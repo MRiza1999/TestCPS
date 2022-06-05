@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/drawable-v24/shape_bottom_sheet.xml" value="0.1" />
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/drawable/edittext_focus_not_focus.xml" value="0.1" />
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/drawable/ic_left_arrow.xml" value="0.1" />
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/drawable/shape_button.xml" value="0.1" />
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/layout/activity_add_user.xml" value="0.18" />
         <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/layout/bottomsheet_filter.xml" value="0.225" />
+        <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/layout/item_list_city.xml" value="0.225" />
         <entry key="..\:/Testing/Tes/TestCPS/app/src/main/res/layout/item_list_user.xml" value="0.33" />
       </map>
     </option>

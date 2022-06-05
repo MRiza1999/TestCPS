@@ -6,13 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tesaplication.databinding.ItemListUserBinding
 import com.example.tesaplication.view.main.model.UserEntityPresentation
 
+
 class ListUserAdapter:RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
 
     val listData:ArrayList<UserEntityPresentation> = ArrayList()
 
-    fun setData(list:List<UserEntityPresentation>){
-        if (list.isEmpty())
-            return
+    fun setData(list:ArrayList<UserEntityPresentation>){
         listData.clear()
         listData.addAll(list)
         notifyDataSetChanged()
@@ -24,6 +23,7 @@ class ListUserAdapter:RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ListUserAdapter.ViewHolder, position: Int) {
         holder.bind(listData[position])
+
     }
 
     override fun getItemCount(): Int = listData.size
@@ -36,14 +36,12 @@ class ListUserAdapter:RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
                 txtCity.text = data.city
                 txtEmail.text = data.email
                 txtPhone.text = data.phoneNumber
-
                 crdList.setOnClickListener {
                     if (expandMoreinfo.isExpanded)
                         expandMoreinfo.collapse()
                     else
                         expandMoreinfo.expand()
                 }
-
             }
         }
     }

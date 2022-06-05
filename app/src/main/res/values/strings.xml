@@ -6,4 +6,7 @@
     <string name="city_user">City User</string>
     <string name="address_user">Address User</string>
     <string name="home">List User</string>
+    <string name="add_user">Add User</string>
+    <string name="search">Search With Name User</string>
+    <string name="user_not_found">User Not Found</string>
 </resources>

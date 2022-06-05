@@ -31,7 +31,8 @@
                     android:layout_height="40dp"
                     android:src="@drawable/ic_user"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorPrimary"/>
                 <TextView
                     android:id="@+id/txt_user"
                     android:layout_width="0dp"
@@ -73,7 +74,8 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_email"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimary"/>
                         <TextView
                             android:id="@+id/txt_email"
                             android:layout_width="0dp"
@@ -102,7 +104,8 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_phone"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimary"/>
                         <TextView
                             android:id="@+id/txt_phone"
                             android:layout_width="0dp"
@@ -131,7 +134,8 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_city"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimary"/>
                         <TextView
                             android:id="@+id/txt_city"
                             android:layout_width="0dp"
@@ -160,7 +164,8 @@
                             android:layout_height="24dp"
                             android:src="@drawable/ic_address"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/colorPrimary"/>
                         <TextView
                             android:id="@+id/txt_address"
                             android:layout_width="0dp"
