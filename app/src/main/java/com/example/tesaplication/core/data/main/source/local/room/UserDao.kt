@@ -11,8 +11,8 @@ interface UserDao {
     fun getListUserEntity(): Flow<List<UserEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertListKecelakaan(userList: List<UserEntity>)
+    suspend fun insertListUser(userList: List<UserEntity>)
 
     @Update
-    fun updateListKecelakaan(userList: List<UserEntity>)
+    fun updateListUser(userList: List<UserEntity>)
 }

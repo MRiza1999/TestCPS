@@ -12,12 +12,16 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val viewModel:MainViewModel by viewModel()
+    
+    var sumUser = 0
+    var sumCity = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         viewModel.getListUser()
+        viewModel.getListCity()
 
         viewModelEvent()
     }
@@ -25,8 +29,16 @@ class MainActivity : AppCompatActivity() {
     private fun viewModelEvent() {
         viewModel.dataListUser.observe(this){data->
             if (data!=null && data.isNotEmpty()){
-                binding.txtText.text= "ukuran data ${data.size}"
+                sumUser = data.size
+                binding.txtText.text= "jumlah user ${sumUser} \njumlah kota ${sumCity}"
             }
         }
+        viewModel.dataListCity.observe(this){data->
+            if (data!=null && data.isNotEmpty()){
+                sumCity = data.size
+                binding.txtText.text= "jumlah user ${sumUser} \njumlah kota ${sumCity}"
+            }
+        }
+        
     }
 }

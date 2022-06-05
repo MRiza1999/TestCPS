@@ -4,7 +4,9 @@ import com.example.tesaplication.core.ApiResponse
 import com.example.tesaplication.core.data.NetworkBoundResource
 import com.example.tesaplication.core.data.main.source.local.MainLocalDataSource
 import com.example.tesaplication.core.data.main.source.remote.MainRemoteDataSource
+import com.example.tesaplication.core.data.main.source.remote.response.ResponseListCity
 import com.example.tesaplication.core.data.main.source.remote.response.ResponseListUser
+import com.example.tesaplication.core.domain.main.model.CityEntityDomain
 import com.example.tesaplication.core.domain.main.model.UserEntityDomain
 import com.example.tesaplication.core.domain.main.repository.IMainRepository
 import com.example.tesaplication.core.persistences.mapper.main.MainDataMapper
@@ -18,22 +20,6 @@ import kotlinx.coroutines.flow.map
 class MainRepository(private val mainRemoteDataSource: MainRemoteDataSource,
                      private val mainLocalDataSource: MainLocalDataSource,
                      private val appExecutors: AppExecutors) : IMainRepository {
-
-    /*override fun getList(): Flow<Resource<List<ResponseListUser>>>  = flow {
-        emit(Resource.Loading())
-        when(val apiResponse = mainRemoteDataSource.getListUser().first()){
-            is ApiResponse.Success->{
-                emit(Resource.Success(apiResponse.data))
-            }
-            is ApiResponse.Empty->{
-                emit(Resource.Error("Empty List"))
-            }
-            is ApiResponse.Error ->{
-                emit(Resource.Error(apiResponse.errorMessage.toString()))
-            }
-        }
-    }*/
-
 
     override fun getList(): Flow<Resource<List<UserEntityDomain>>>  =
         object:
@@ -51,8 +37,29 @@ class MainRepository(private val mainRemoteDataSource: MainRemoteDataSource,
                 mainRemoteDataSource.getListUser()
 
             override suspend fun saveCallResult(data: List<ResponseListUser?>) {
-                val movieList=MainDataMapper.mapListUserResponeToEntity(data)
-                mainLocalDataSource.insertListUser(movieList)
+                val list=MainDataMapper.mapListUserResponeToEntity(data)
+                mainLocalDataSource.insertListUser(list)
+            }
+        }.asFlow()
+
+    override fun getListCity(): Flow<Resource<List<CityEntityDomain>>> =
+        object:
+            NetworkBoundResource<List<CityEntityDomain>, List<ResponseListCity?>>(){
+            override fun loadFromDB(): Flow<List<CityEntityDomain>> {
+                return mainLocalDataSource.getListCity().map {
+                    MainDataMapper.mapListCity(it)
+                }
+            }
+
+            override fun shouldFetch(data: List<CityEntityDomain>?): Boolean =
+                data == null || data.isEmpty()
+
+            override suspend fun createCall(): Flow<ApiResponse<List<ResponseListCity?>>> =
+                mainRemoteDataSource.getListCity()
+
+            override suspend fun saveCallResult(data: List<ResponseListCity?>) {
+                val list=MainDataMapper.mapListCityResponeToEntity(data)
+                mainLocalDataSource.insertListCity(list)
             }
         }.asFlow()
 

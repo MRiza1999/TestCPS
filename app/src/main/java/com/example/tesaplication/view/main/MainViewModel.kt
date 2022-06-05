@@ -7,6 +7,7 @@ import com.example.tesaplication.core.data.main.source.remote.response.ResponseL
 import com.example.tesaplication.core.vo.Resource
 import com.example.tesaplication.core.domain.main.usecase.MainUseCase
 import com.example.tesaplication.core.persistences.mapper.main.MainDataMapper
+import com.example.tesaplication.view.main.model.CityEntityPresentation
 import com.example.tesaplication.view.main.model.UserEntityPresentation
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
@@ -23,6 +24,13 @@ class MainViewModel (private val mainUseCase: MainUseCase): ViewModel() {
     val dataListUser = _dataListUser
     val isErrorListUser = _isErrorListUser
 
+    private val _isLoadingListCity = MutableLiveData<Boolean>()
+    private val _dataListCity = MutableLiveData<List<CityEntityPresentation>>()
+    private val _isErrorListCity = MutableLiveData<String?>()
+
+    val isLoadingListCity = _isLoadingListCity
+    val dataListCity = _dataListCity
+    val isErrorListCity = _isErrorListCity
 
     fun getListUser(){
         viewModelScope.launch {
@@ -53,4 +61,35 @@ class MainViewModel (private val mainUseCase: MainUseCase): ViewModel() {
                 }
         }
     }
+
+    fun getListCity(){
+        viewModelScope.launch {
+            mainUseCase.getListCity()
+                .onStart {
+                    _isLoadingListCity.postValue(true)
+                }
+                .onCompletion {
+                    _isLoadingListCity.postValue(false)
+                }
+                .collect { data->
+                    when (data) {
+                        is Resource.Loading ->
+                            _isLoadingListCity.postValue(true)
+                        is Resource.Success -> {
+                            _isLoadingListCity.postValue(false)
+                            _dataListCity.postValue(data.data?.let {
+                                MainDataMapper.mapListCityDomainToPresentation(
+                                    it
+                                )
+                            })
+                        }
+                        is Resource.Error -> {
+                            _isLoadingListCity.postValue(false)
+                            _isErrorListCity.postValue(data.message)
+                        }
+                    }
+                }
+        }
+    }
+
 }

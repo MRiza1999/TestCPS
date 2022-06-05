@@ -8,5 +8,5 @@ data class ResponseListCity(
 	val name: String? = null,
 
 	@field:SerializedName("id")
-	val id: String? = null
+	val id: Int? = null
 )

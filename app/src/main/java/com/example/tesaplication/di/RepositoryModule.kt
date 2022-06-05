@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
     factory { AppExecutors() }
     single { MainRemoteDataSource(mainService = get()) }
-    single { MainLocalDataSource(userDao = get()) }
+    single { MainLocalDataSource(userDao = get(), cityDao = get()) }
     single<IMainRepository>{ MainRepository(mainRemoteDataSource = get(), mainLocalDataSource = get(),
         appExecutors = get()) }
 }

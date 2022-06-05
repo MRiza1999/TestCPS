@@ -13,6 +13,10 @@ val databaseModule = module {
         get<Database>().userDao()
     }
 
+    factory {
+        get<Database>().cityDao()
+    }
+
     single {
         val passhrase:ByteArray= SQLiteDatabase.getBytes("testCPS".toCharArray())
         val factory = SupportFactory(passhrase)
