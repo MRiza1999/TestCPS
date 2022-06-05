@@ -17,7 +17,7 @@ data class ResponseListUser(
 	val name: String? = null,
 
 	@field:SerializedName("id")
-	val id: String? = null,
+	val id: Int? = null,
 
 	@field:SerializedName("email")
 	val email: String? = null

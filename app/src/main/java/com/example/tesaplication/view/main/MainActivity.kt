@@ -1,31 +1,31 @@
-package com.example.tesaplication
+package com.example.tesaplication.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.tesaplication.view.main.MainViewModel
+import com.example.tesaplication.R
+import com.example.tesaplication.databinding.ActivityMainBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val viewModel:MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         viewModel.getListUser()
 
-
         viewModelEvent()
-
     }
 
     private fun viewModelEvent() {
         viewModel.dataListUser.observe(this){data->
-            if (data!=null && data.size>0){
-                Toast.makeText(applicationContext, "ukuran data ${data.size}", Toast.LENGTH_SHORT).show()
+            if (data!=null && data.isNotEmpty()){
+                binding.txtText.text= "ukuran data ${data.size}"
             }
         }
     }

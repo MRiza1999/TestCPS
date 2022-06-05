@@ -1,10 +1,7 @@
 package com.example.tesaplication
 
 import android.app.Application
-import com.example.tesaplication.di.networkModule
-import com.example.tesaplication.di.repositoryModule
-import com.example.tesaplication.di.usecaseModule
-import com.example.tesaplication.di.viewModelModule
+import com.example.tesaplication.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,12 +12,13 @@ open class AppController:Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidLogger(Level.ERROR)
+            androidLogger(Level.NONE)
             androidContext(this@AppController)
             koin.loadModules(listOf(
                 networkModule,
                 repositoryModule,
                 usecaseModule,
+                databaseModule,
                 viewModelModule
             ))
         }
