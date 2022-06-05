@@ -5,4 +5,5 @@
     <string name="phone_user">Phone User</string>
     <string name="city_user">City User</string>
     <string name="address_user">Address User</string>
+    <string name="home">List User</string>
 </resources>
