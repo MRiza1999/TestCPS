@@ -45,13 +45,13 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_user"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/btn_back"
@@ -109,11 +109,11 @@
                         android:paddingVertical="8dp"
                         >
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="8dp"
-                            android:text="Nama Lengkap"
+                            android:text="@string/full_name"
                             android:textColor="#000"
                             android:textStyle="bold"
                             app:layout_constraintLeft_toLeftOf="parent" />
@@ -125,21 +125,21 @@
                             app:hintEnabled="false">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_fullname"
+                                android:id="@+id/edt_fullname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_focus_not_focus"
                                 android:inputType="text"
                                 android:textColorHint="#c5c5c5"
                                 android:paddingHorizontal="12dp"
-                                android:hint="Masukkan Nama Legkap"
+                                android:hint="@string/input_full_name"
                                 android:paddingVertical="15dp"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Email"
+                            android:text="@string/email"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:paddingBottom="8dp"
@@ -153,22 +153,22 @@
                             app:hintEnabled="false">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_email"
+                                android:id="@+id/edt_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_focus_not_focus"
                                 android:paddingHorizontal="12dp"
                                 android:textColorHint="#c5c5c5"
                                 android:inputType="textEmailAddress"
-                                android:hint="Masukkan Nomor Email"
+                                android:hint="@string/input_email"
                                 android:paddingVertical="15dp"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="No Handphone"
+                            android:text="@string/phone_number"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:paddingBottom="8dp"
@@ -182,21 +182,41 @@
                             app:hintEnabled="false">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_nohp"
+                                android:id="@+id/edt_phonenumber"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_focus_not_focus"
                                 android:paddingHorizontal="12dp"
                                 android:textColorHint="#c5c5c5"
                                 android:inputType="number"
-                                android:hint="Masukkan Nomor Handphone"
+                                android:hint="@string/input_phone_number"
                                 android:paddingVertical="15dp"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Alamat"
+                            android:text="City"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:paddingBottom="8dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintLeft_toLeftOf="parent" />
+
+                        <Spinner
+                            android:id="@+id/spnnr_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_shape_spinner"
+                            android:paddingVertical="10dp"
+                            android:spinnerMode="dialog"
+                            />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
                             android:textColor="#000"
                             android:textStyle="bold"
                             android:paddingBottom="8dp"
@@ -207,19 +227,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:boxBackgroundMode="none"
-                            app:hintEnabled="false"
-                            android:focusable="false">
+                            app:hintEnabled="false">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_date"
+                                android:id="@+id/edt_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/edittext_focus_not_focus"
                                 android:paddingHorizontal="12dp"
                                 android:textColorHint="#c5c5c5"
                                 android:inputType="text"
-                                android:focusable="false"
-                                android:hint="Masukkan Tanggal Lahir"
+                                android:hint="@string/input_address"
                                 android:paddingVertical="15dp"/>
                         </com.google.android.material.textfield.TextInputLayout>
 

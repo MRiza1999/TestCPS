@@ -9,4 +9,11 @@
     <string name="add_user">Add User</string>
     <string name="search">Search With Name User</string>
     <string name="user_not_found">User Not Found</string>
+    <string name="full_name">Full Name</string>
+    <string name="input_full_name">Input Full Name</string>
+    <string name="input_email">Input Email</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="input_phone_number">Input Phone Number</string>
+    <string name="input_address">Input Address</string>
 </resources>

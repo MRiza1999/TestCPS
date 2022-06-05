@@ -12,6 +12,7 @@
         android:textColor="@color/black"
         android:text="@string/city_user"
         android:paddingVertical="12dp"
+        android:paddingHorizontal="16dp"
         app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

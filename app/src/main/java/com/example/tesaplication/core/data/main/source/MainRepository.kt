@@ -4,6 +4,8 @@ import com.example.tesaplication.core.ApiResponse
 import com.example.tesaplication.core.data.NetworkBoundResource
 import com.example.tesaplication.core.data.main.source.local.MainLocalDataSource
 import com.example.tesaplication.core.data.main.source.remote.MainRemoteDataSource
+import com.example.tesaplication.core.data.main.source.remote.request.RequestAddUser
+import com.example.tesaplication.core.data.main.source.remote.response.ResponseAddUser
 import com.example.tesaplication.core.data.main.source.remote.response.ResponseListCity
 import com.example.tesaplication.core.data.main.source.remote.response.ResponseListUser
 import com.example.tesaplication.core.domain.main.model.CityEntityDomain
@@ -62,5 +64,20 @@ class MainRepository(private val mainRemoteDataSource: MainRemoteDataSource,
                 mainLocalDataSource.insertListCity(list)
             }
         }.asFlow()
+
+    override fun postAddUser(requestAddUser: RequestAddUser): Flow<Resource<ResponseAddUser>> = flow {
+        emit(Resource.Loading())
+        when(val apiResponse = mainRemoteDataSource.postAddUser(requestAddUser).first()){
+            is ApiResponse.Success->{
+                emit(Resource.Success(apiResponse.data))
+            }
+            is ApiResponse.Empty->{
+                emit(Resource.Error("Error"))
+            }
+            is ApiResponse.Error->{
+                emit(Resource.Error(apiResponse.errorMessage))
+            }
+        }
+    }
 
 }

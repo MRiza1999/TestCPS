@@ -3,6 +3,8 @@ package com.example.tesaplication.view.main.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tesaplication.core.data.main.source.remote.request.RequestAddUser
+import com.example.tesaplication.core.data.main.source.remote.response.ResponseAddUser
 import com.example.tesaplication.core.vo.Resource
 import com.example.tesaplication.core.domain.main.usecase.MainUseCase
 import com.example.tesaplication.core.persistences.mapper.main.MainDataMapper
@@ -30,6 +32,15 @@ class MainViewModel (private val mainUseCase: MainUseCase): ViewModel() {
     val isLoadingListCity = _isLoadingListCity
     val dataListCity = _dataListCity
     val isErrorListCity = _isErrorListCity
+
+    private val _isLoadingAddUser = MutableLiveData<Boolean>()
+    private val _dataAddUser = MutableLiveData<ResponseAddUser>()
+    private val _isErrorAddUser = MutableLiveData<String?>()
+
+    val isLoadingAddUser = _isLoadingAddUser
+    val dataAddUser = _dataAddUser
+    val isErrorAddUser = _isErrorAddUser
+
 
     fun getListUser(){
         viewModelScope.launch {
@@ -85,6 +96,34 @@ class MainViewModel (private val mainUseCase: MainUseCase): ViewModel() {
                         is Resource.Error -> {
                             _isLoadingListCity.postValue(false)
                             _isErrorListCity.postValue(data.message)
+                        }
+                    }
+                }
+        }
+    }
+
+    fun postAddUser(requestAddUser: RequestAddUser){
+        viewModelScope.launch {
+            mainUseCase.postAddUser(requestAddUser)
+                .onStart {
+                    _isLoadingAddUser.postValue(true)
+                }
+                .onCompletion {
+                    _isLoadingAddUser.postValue(false)
+                }
+                .collect { data->
+                    when (data) {
+                        is Resource.Loading ->
+                            _isLoadingAddUser.postValue(true)
+                        is Resource.Success -> {
+                            _isLoadingAddUser.postValue(false)
+                            if (data.data!=null){
+                                _dataAddUser.postValue(data.data!!)
+                            }
+                        }
+                        is Resource.Error -> {
+                            _isLoadingAddUser.postValue(false)
+                            _isErrorAddUser.postValue(data.message)
                         }
                     }
                 }

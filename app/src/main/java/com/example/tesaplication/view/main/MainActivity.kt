@@ -33,6 +33,10 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    companion object{
+        var REQUEST_ADD_USER = 100
+    }
+
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val viewModel: MainViewModel by viewModel()
@@ -99,7 +103,8 @@ class MainActivity : AppCompatActivity() {
         binding.run {
             imgAddUser.setOnClickListener {
                 val intent = Intent(application,AddUserActivity::class.java)
-                startActivity(intent)
+                intent.putExtra(AddUserActivity.ARG_LIST_CITY,listDataCity)
+                startActivityForResult(intent, REQUEST_ADD_USER)
             }
 
             imgFilter.setOnClickListener {
@@ -151,6 +156,7 @@ class MainActivity : AppCompatActivity() {
     private fun viewModelEvent() {
         viewModel.dataListUser.observe(this){data->
             if (data!=null && data.isNotEmpty()){
+                listDataUser.clear()
                 listDataUser.addAll(data)
                 mAdapter.setData(listDataUser)
                 searchUser()
@@ -212,6 +218,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode== REQUEST_ADD_USER && resultCode== AddUserActivity.SUCCES_ADD_USER){
+            viewModel.getListUser()
+        }
+    }
 
     fun hideKeyboard() =
         (this.getSystemService(AppCompatActivity.INPUT_METHOD_SERVICE) as? InputMethodManager)!!
