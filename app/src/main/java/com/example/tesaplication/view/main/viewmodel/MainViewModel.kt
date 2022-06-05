@@ -1,9 +1,8 @@
-package com.example.tesaplication.view.main
+package com.example.tesaplication.view.main.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tesaplication.core.data.main.source.remote.response.ResponseListUser
 import com.example.tesaplication.core.vo.Resource
 import com.example.tesaplication.core.domain.main.usecase.MainUseCase
 import com.example.tesaplication.core.persistences.mapper.main.MainDataMapper

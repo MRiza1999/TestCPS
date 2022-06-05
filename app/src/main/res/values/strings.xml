@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TesAplication</string>
+    <string name="name">name</string>
+    <string name="email_user">Email User</string>
+    <string name="phone_user">Phone User</string>
+    <string name="city_user">City User</string>
+    <string name="address_user">Address User</string>
 </resources>
